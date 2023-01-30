@@ -9,8 +9,8 @@ So I had to set those values to equal zero, fortunately, all values were positiv
 Also, I couldn't run the commend line in the notebook to submit my submission files because I have different operating system!. so I took screen shots from kaggle submission page.
 
 ### What was the top ranked model that performed?
-The top ranked model was: WeightedEnsemble_L3 with adding new features and defuelt setting "no hyperparameter tuning". 
-The root squared error for the model = -19.36, R2/accuracy =0.988, kaggle score= 0.77367.
+The top ranked model was: WeightedEnsemble_L3 without "hyperparameter tuning", with adding new features ["hour","day","year"], transforming skewed features ["humidity","windspeed"], and dropping highly correlated features ["atemp",month]. 
+And the error "RMSE" in validation set = 39.88 and in the test set: the Error "RSMLE" = 0.46397.
 
 ## Exploratory data analysis and feature creation
 ### What did the exploratory analysis find and how did you add additional features?
@@ -57,33 +57,40 @@ there are some outliers, and they should be handeled.
 
  
 ### How much better did your model preform after adding additional features and why do you think that is?
-TODO: Add your explanation
+
+In the first submission without adding any features, the model was suffering from high bias, so the error "RMSE" was 0.52 in validation data and 1.7989 with (RSMLE) error in test data. But after adding new features, extracted from DateTime info, ["hour", "day", "month", "year"] the error was minimized in both validation and test data: with (RMSE) = 0.30 and (RSMLE) = 0.77367, which is a huge improvement.
+
+Also, I retrained the data after adding the same features but deleted the highly correlated features and transformed the skewed data with log transformation, and the error was minimized more in test data whereas slightly higher in validation data:
+with (RMSE) = 0.39 and (RSMLE) = 0.46397, even though the error increased in the validation data the model generalized well in test data.
 
 ## Hyper parameter tuning
 ### How much better did your model preform after trying different hyper parameters?
-TODO: Add your explanation
+
+The model performed much better than the initial model and a little bit better than the improvement with just adding new features, 
+but a little bit worse than the improvement with transformed skewed features.
+
+rmse decresed from 39.88 to 37.20 for the best model. However, the model's test error icreased from 0.46397 to 0.51801. This gives an indication that the model with hyperparameter has a bit higher variance.
 
 ### If you were given more time with this dataset, where do you think you would spend more time?
-TODO: Add your explanation
+
+I would spend more time detecting and handling outliers and doing more robust feature transformations to fix skewed data. 
 
 ### Create a table with the models you ran, the hyperparameters modified, and the kaggle score.
-|model|hpo1|hpo2|hpo3|score|
+|model|hpo1|hpo2||score|
 |--|--|--|--|--|
-|initial|?|?|?|?|
-|add_features|?|?|?|?|
-|hpo|?|?|?|?|
-
+|initial|defult|defult|1.7989|
+|add_features|defult|defult|0.77367|
+|add_features_transform_skewedfeatures_no_hpo| defult|defult|0.46397
+|hpo|CAT|GMB|0.51801|
 ### Create a line plot showing the top model score for the three (or more) training runs during the project.
-
-TODO: Replace the image below with your own.
 
 ![model_train_score.png](img/model_train_score.png)
 
 ### Create a line plot showing the top kaggle score for the three (or more) prediction submissions during the project.
 
-TODO: Replace the image below with your own.
 
 ![model_test_score.png](img/model_test_score.png)
 
 ## Summary
-TODO: Add your explanation
+
+The project showed how important doing EDA (exploratory data analysis) for knowing your data well and taking the right steps with feature engineering before modeling. also hyper parameter optimization is curcial step in machine learning process, which will make a huge improvment for choosing a robust model. 
