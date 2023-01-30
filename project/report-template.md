@@ -76,7 +76,7 @@ rmse decresed from 39.88 to 37.20 for the best model. However, the model's test 
 I would spend more time detecting and handling outliers and doing more robust feature transformations to fix skewed data. 
 
 ### Create a table with the models you ran, the hyperparameters modified, and the kaggle score.
-|model|hpo1|hpo2||score|
+|model|hpo1|hpo2|score|
 |--|--|--|--|--|
 |initial|defult|defult|1.7989|
 |add_features|defult|defult|0.77367|
