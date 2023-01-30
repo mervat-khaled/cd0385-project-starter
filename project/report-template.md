@@ -77,7 +77,7 @@ I would spend more time detecting and handling outliers and doing more robust fe
 
 ### Create a table with the models you ran, the hyperparameters modified, and the kaggle score.
 |model|hpo1|hpo2|score|
-|--|--|--|--|--|--|
+|--|--|--|--|
 |initial|defult|defult|1.7989|
 |add_features|defult|defult|0.77367|
 |add_features_transform_skewedfeatures_no_hpo| defult|defult|0.46397
